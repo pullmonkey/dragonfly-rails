@@ -21,7 +21,7 @@ module DragonflyRails
         c.protect_from_dos_attacks = config.protect_from_dos_attacks
         c.secret = config.security_key
         c.log = ::Rails.logger
-        if ::Rails.env.production? || ::Rails.env.staging?
+        if false and (::Rails.env.production? || ::Rails.env.staging?) # not sure why we are forcing S3 with heroku
           @app.configure_with(:heroku, config.storage_options)
         else
           if c.datastore.is_a?(::Dragonfly::DataStorage::FileDataStore)
